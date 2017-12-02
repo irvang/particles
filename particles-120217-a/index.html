@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Particles</title>
+   <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+
+   <script src="libraries/p5.dom.js" type="text/javascript"></script>
+   <!-- <script src="libraries/p5.sound.js" type="text/javascript"></script> -->
+<!-- global needs to be the first one / declares global object -->
+
+   <script src="js/global.js" type="text/javascript"></script>
+   <script src="js/utilities.js" type="text/javascript"></script>
+   <script src="js/colors.js" type="text/javascript"></script>
+   <script src="js/attractor.js" type="text/javascript"></script>
+   <script src="js/particle.js" type="text/javascript"></script>
+   <script src="js/listeners.js" type="text/javascript"></script>
+   <script src="js/sketch.js" type="text/javascript"></script>
+
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+   <div>
+      <div id='controls'>
+
+         <!-- CONTROLLERS -->
+
+         <button id='toggleAtt' type="button" height=100px> Attractors</button>
+         <button id='recolor' type="button" height=100px> Change colors</button>
+
+         <!-- <div id='attMassDiv'> -->
+         <label for 'attMass'>Atrctr-Mass</label>
+         <input id='aMass' type='range' value='1' min='0.5' max='13' step='0.1'>
+         <!-- </div> -->
+
+         <!-- <div id="partMassDiv"> -->
+         <label for='pMass'>Part Mass</label>
+         <input id='pMass' type='range' value='0.5' min='0.3' max='3' step='0.1'>
+         <!-- </div> -->
+
+         <label for='pLimitLo'>Velocity limit: low</label>
+         <input id='pLimitLo' type='range' value='7' min='5' max='30' step='1'>
+
+         <label for='pLimitHi'>high</label>
+         <input id='pLimitHi' type='range' value='10' min='5' max='30' step='1'>
+         <!-- <button type="button" id='testCreate' height=100px > Test 1</button> -->
+
+
+      </div>
+
+      <div id='canvasDiv'>
+         <!-- Canvas here -->
+      </div>
+
+   </div>
+
+</body>
+
+
+</html>
