@@ -11,10 +11,10 @@
 //====CONSTRUCTOR
 class Particle {
 
-    constructor(_xStart, _yStart, _color) {
+    constructor(xStart, yStart, color) {//(number, number, color)
 
         //  vectors
-        this.pos = createVector(_xStart, _yStart);
+        this.pos = createVector(xStart, yStart);
         this.vel = createVector(0.0, 0);
         this.acc = createVector(0.0, 0);
         this.force = createVector(1,1);
@@ -26,7 +26,7 @@ class Particle {
         // this.limit = 5;//limits velocity
 
         //color
-        this.color = _color;// could be static since I am using the same for all
+        this.color = color;// could be static since I am using the same for all
     }
 }
 
@@ -66,7 +66,8 @@ Particle.prototype.display = function () {
     strokeWeight(0);
     // fill(255, 127);
     fill(this.color);
-    ellipse(this.pos.x, this.pos.y, this.mass * Particle.scalM, this.mass * Particle.scalM);
+	ellipse(this.pos.x, this.pos.y, this.mass 
+		* Particle.scalM, this.mass * Particle.scalM);
 }
 
 //  ===========================================================

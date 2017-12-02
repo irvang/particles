@@ -36,7 +36,7 @@ lstnrs.addListeners = function () { // invoked from setup
 //  ===================================
 //====LISTENER's FUNCTIONSÍ
 
-function changeLo(lstnrs) {
+function changeLo(lstnrs) {//(lstnrs obj)
 	return function (evt) {
 		lstnrs.pLimitLo = parseFloat(evt.target.value);
 		setPLimit(lstnrs);
@@ -44,7 +44,7 @@ function changeLo(lstnrs) {
 }
 
 //-------------------------------------
-function changeHi(lstnrs) {
+function changeHi(lstnrs) {//(lstnrs obj)
 	return function (evt) {
 		lstnrs.pLimitHi = parseFloat(evt.target.value);
 		setPLimit(lstnrs);
@@ -52,7 +52,7 @@ function changeHi(lstnrs) {
 }
 
 //-------------------------------------
-function setPLimit(lstnrs) {//sets particle limit
+function setPLimit(lstnrs) {//sets particle limit / (lstnrs obj)
 	for (let i = 0; i < Attractor.nbAtrctr; ++i) {
 		for (let j = 0; j < Particle.nbPtcls; ++j) {
 			Particle.arr[i][j].limit = random(lstnrs.pLimitLo, lstnrs.pLimitHi);

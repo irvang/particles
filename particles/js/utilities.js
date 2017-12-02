@@ -1,5 +1,5 @@
 //  -----------------------------------
-function calcAttractors(attArray, partArray) {
+function calcAttractors(attArray, partArray) {//(array, array)
     for (let i = 0; i < Attractor.nbAtrctr; ++i) {
         attArray[i].update();
         attArray[i].edges();
@@ -10,7 +10,7 @@ function calcAttractors(attArray, partArray) {
 }
 
 //  -----------------------------------
-function calcParticles(i, attArray, partArray) {
+function calcParticles(i, attArray, partArray) {//(number, array, array)
     for (let j = 0; j < Particle.nbPtcls; ++j) {
 
         //  calculate attractions is a function of attractor class
@@ -29,7 +29,7 @@ function calcParticles(i, attArray, partArray) {
 }
 
 //  -----------------------------------
-function createAttractors(attArray, partArray, g) {
+function createAttractors(attArray, partArray, g) {//(array, array, object)
     for (let i = 0; i < Attractor.nbAtrctr; ++i) {
         //  create the arrays
 
@@ -38,21 +38,22 @@ function createAttractors(attArray, partArray, g) {
         let color = getARandomColor();
 
         // Attractor (x, y, mass, gravity, color) 10 + random(10)
-        attArray[i] = new Attractor(random(g.myWidth), random(g.myHeight), g.attMass + random(g.randMass), g.attGravity, 'rgba(75,75,75, 0.4)');
+		attArray[i] = new Attractor(random(g.myWidth), random(g.myHeight), g.attMass 
+		+ random(g.randMass), g.attGravity, 'rgba(75,75,75, 0.4)');
 
         createParticles(i, color, partArray, g);
     }
 }
 
 //  -----------------------------------
-function createParticles(i, color, partArray, g) {
+function createParticles(i, color, partArray, g) {//(number, color, array, object)
     for (let j = 0; j < Particle.nbPtcls; ++j) {
         partArray[i][j] = new Particle(random(g.myWidth), random(g.myHeight), color);
     }
 }
 
 //  -----------------------------------
-function displayStats(g) {
+function displayStats(g) {//object
     g.countForDisplay %= 10; g.countForDisplay++;
     if (g.countForDisplay >= 10) {
         g.word = round(frameRate());
