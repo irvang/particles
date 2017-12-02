@@ -11,10 +11,8 @@
 "use strict";
 g.canvas = {};
 
-// Particle.arr = []; //  an array of the array of particles
-// Attractor.arr = []; //  an array of attractors
 Attractor.nbAtrctr = 3; //var numberOfAttractors = 5;// testing at a=5, p=200
-Particle.nbPtcls = 400; //var particlesPerAttractor = 200;// 400
+Particle.nbPtcls = 30; //var particlesPerAttractor = 200;// 400
 
 
 g.attMass = 12, g.randMass = 5;//  mass + 10.ranodm // 12, 5 is a good setting to start
@@ -28,8 +26,6 @@ g.oldTime = new Date(), g.newTime = new Date();// initialize to date to avoid er
 g.myHeight = 0, g.myWidth = 0;
 
 //  -----------------------------------
-// let pLength = 0;
-// let aLength = 0;
 
 g.initTime = new Date();
 g.runningTime = new Date();
@@ -39,7 +35,7 @@ g.totalFrameRate = 0;
 g.countedFrames = 0;
 g.countForDisplay = 0;
 
-//  =================================================================
+//  ===================================
 //  -----------------------------------
 function setup() {
     g.myHeight = windowHeight;
@@ -109,6 +105,4 @@ IDEAS
 -Maybe the attractors should be only a little bit of the color at the center and at the rest it should be black
 -Attractors expand and contract on sinewave - frequency and amplitude
 
-To do now:
--Write my possible controls. The ones that affect movement
 */
