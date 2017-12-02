@@ -2,6 +2,9 @@
 //  Color selection
 //See here if full array wanted: https://gist.github.com/bobspace/2712980
 "use strict";
+
+
+//-------------------------------------
 ////  rgba:
 let red = 'rgba(255, 0, 0, 0.8)',
     blue = 'rgba(0, 0, 255, 0.8)',
@@ -17,16 +20,14 @@ let red = 'rgba(255, 0, 0, 0.8)',
     white = 'rgba(255, 255, 255, 0.8)',
     greenyellow = 'rgba(173, 255, 47, 0.8)';
 
-//use this array for alpha
+//use myColors2 array for alpha
 // let myColors2 = [red, blue, cyan, yellow, lime, fuchsia, orange, chartreuse, deeppink, white, greenyellow];
 
 // without alpha
 var myColors2 = ['red', 'fuchsia', 'lime', 'yellow', 'blue', 'aqua', 'chartreuse', 'white', 'deeppink', 'greenyellow' ]; 
 let storeColors = myColors2.slice();// slice creates copy
 
-
-
-
+//-------------------------------------
 function getARandomColor() {
 
     /*  a value between 0 and color.length-1
