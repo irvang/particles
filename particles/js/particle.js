@@ -5,8 +5,10 @@
 
 
 //  ===========================================================
-//  ===========================================================
 "use strict";
+
+//  ===========================================================
+//====CONSTRUCTOR
 class Particle {
 
     constructor(_xStart, _yStart, _color) {
@@ -28,11 +30,15 @@ class Particle {
     }
 }
 
+//-------------------------------------
+//====STATIC PROPERTIES
 Particle.scalM = 0.5; //scale mass / only display, not calculations
 Particle.elapsed = 1;
 Particle.nbPtcls = 0; //Particle in each array of particles;
 Particle.arr = [];// Particle.arr = [ [],[],[], ... ]
+
 //  -----------------------------------
+//====PARTICLE METHODS
 Particle.prototype.applyForce = function () {
     // we make a copy so that the original force is not affected since we need to reuse it// not really
     // let f = this.force.copy();
@@ -63,6 +69,4 @@ Particle.prototype.display = function () {
     ellipse(this.pos.x, this.pos.y, this.mass * Particle.scalM, this.mass * Particle.scalM);
 }
 
-
-//  ===========================================================
 //  ===========================================================

@@ -8,15 +8,13 @@
 //  3rd law - for every action there's an opposite reaction
 //  force = mass * acceleration ; A = F/M ; if M = 1 , then A = F
 
+//  ===========================================================
 "use strict";
-//  ===========================================================
-//  ===========================================================
 
+//  ===========================================================
+//====CONSTRUCTOR
 class Attractor {
-
     constructor(_x, _y, _mass, _gravity, _color) {
-
-        
 
         //  Mass and gravity work together. I am setting gravity to a constant and using mass as the only decisive factor. Gravity and mass are only used to calculate attraction() for calculations, mass is used also in display() and update()
         this.mass = _mass;
@@ -38,12 +36,16 @@ class Attractor {
     }
 }
 
+//-------------------------------------
+//====STATIC PROPERTIES
 //time elapsed since last frame. We are equalling 60 frames per second, to ms. whenever time is polled it will be equivalent to (60 * vel * elapsed), elapsed being equal to (newTime - oldTime )/ 1000 (approx 16.6ms , which is 60fps)
 Attractor.elapsed = 1;
 Attractor.scalM = 1;// scalar for size of eclipse() / only display at the moment
 Attractor.nbAtrctr = 1;//Attractor.numberOfAttractors = 0;
 Attractor.arr = [];
-//  --------------------------------------------------------
+
+//  -----------------------------------
+//====ATTRACTOR METHODS
 Attractor.prototype.calculateAttraction = function (p) { // attractor and particle objects
     // generates a force, returns vector force = (x,y);
 
