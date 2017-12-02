@@ -12,7 +12,7 @@
 g.canvas = {};
 
 Attractor.nbAtrctr = 3; //var numberOfAttractors = 5;// testing at a=5, p=200
-Particle.nbPtcls = 30; //var particlesPerAttractor = 200;// 400
+Particle.nbPtcls = 400; //var particlesPerAttractor = 200;// 400
 
 
 g.attMass = 12, g.randMass = 5;//  mass + 10.ranodm // 12, 5 is a good setting to start

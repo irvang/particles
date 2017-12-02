@@ -14,17 +14,18 @@
 //  ===========================================================
 //====CONSTRUCTOR
 class Attractor {
-    constructor(_x, _y, _mass, _gravity, _color) {
+	//(number, number, number, number, color)
+    constructor(x, y, mass, gravity, color) {
 
         //  Mass and gravity work together. I am setting gravity to a constant and using mass as the only decisive factor. Gravity and mass are only used to calculate attraction() for calculations, mass is used also in display() and update()
-        this.mass = _mass;
-        this.initialMass = _mass;// a scalar reference, a constant
+        this.mass = mass;
+        this.initialMass = mass;// a scalar reference, a constant
         // this.grav = _gravity;//not used at the moment
         this.rAcc = 4; // limits of acceleration(random rAcc,random -rAcc) - good for control
         this.rVel = 5;  // limits of random velocity
 
         //vectors
-        this.pos = createVector(_x, _y);
+        this.pos = createVector(x, y);
         this.acc = createVector(random(-this.rAcc, this.rAcc), random(-this.rAcc, this.rAcc));
         this.vel = createVector(random(-this.rVel, this.rVel), random(-this.rVel, this.rVel));
 
@@ -32,7 +33,7 @@ class Attractor {
         this.count = 0; // counts for the shifts in direction in update// 
         this.counterShift = random(30, 60);
 
-        this.color = _color;    //color
+        this.color = color;    //color
     }
 }
 
@@ -46,7 +47,7 @@ Attractor.arr = [];
 
 //  -----------------------------------
 //====ATTRACTOR METHODS
-Attractor.prototype.calculateAttraction = function (p) { // attractor and particle objects
+Attractor.prototype.calculateAttraction = function (p) { // attractor and particle objects (type: particle)
     // generates a force, returns vector force = (x,y);
 
     // Calculate direction of force
