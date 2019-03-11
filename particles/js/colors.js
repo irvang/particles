@@ -24,7 +24,7 @@ let red = 'rgba(255, 0, 0, 0.8)',
 // let myColors2 = [red, blue, cyan, yellow, lime, fuchsia, orange, chartreuse, deeppink, white, greenyellow];
 
 // without alpha
-var myColors2 = ['red', 'fuchsia', 'lime', 'yellow', 'blue', 'aqua', 'chartreuse', 'white', 'deeppink', 'greenyellow' ]; 
+var myColors2 = ['red', 'fuchsia', 'lime', 'yellow', 'blue', 'aqua', 'chartreuse', 'white', 'deeppink', 'greenyellow'];
 let storeColors = myColors2.slice();// slice creates copy
 
 //-------------------------------------

@@ -14,7 +14,7 @@
 //  ===========================================================
 //====CONSTRUCTOR
 class Attractor {
-	//(number, number, number, number, color)
+    //(number, number, number, number, color)
     constructor(x, y, mass, gravity, color) {
 
         //  Mass and gravity work together. I am setting gravity to a constant and using mass as the only decisive factor. Gravity and mass are only used to calculate attraction() for calculations, mass is used also in display() and update()
@@ -35,6 +35,96 @@ class Attractor {
 
         this.color = color;    //color
     }
+
+    calculateAttraction  (p) { // attractor and particle objects (type: particle)
+        // generates a force, returns vector force = (x,y);
+
+        // Calculate direction of force
+        p.force = p5.Vector.sub(this.pos, p.pos); //2d vector
+
+        // Distance between objects
+        // get the lenght (magnitude) of the vector
+        let distance = p.force.mag(); //2d vector / see footnote
+
+        // Artificial constraint
+        distance = constrain(distance, 2, 8);//constrain(n,low,high) n=numberToConstrain
+
+        // Normalize vector (distance doesn't matter here, we just want this vector for direction)
+        p.force.normalize();
+
+        // Calculate gravitional force magnitude
+        let strength = (this.mass * p.mass) / (distance * distance);
+        // var strength = (this.grav * this.mass * part.mass) / (distance * distance);
+        // Get force vector --> magnitude * direction
+        p.force.mult(strength);
+        // this.calculatedthis.force = this.force;
+        // p.force = force;
+    }
+
+    //  --------------------------------------------------------
+    update  () {
+
+        // this counter decides when to do a shift in direction
+        if (this.count >= this.counterShift - 1) {
+            this.acc = createVector(random(-this.rAcc, this.rAcc), random(-this.rAcc, this.rAcc));
+            this.counterShift = random(15, 240);//defines how many counts until next shift
+        }
+
+        this.vel.add(this.acc); // add acceleration to velocity
+
+        //constrains a value between a minimum and a maximum value/ I guess limit and constrain have the same use here
+        // this.vel.x = constrain(this.vel.x, -this.rAcc, this.rAcc);// constrain so that is does not go crazy fast
+        // this.vel.y = constrain(this.vel.y, -this.rAcc, this.rAcc);
+
+        //this seems to work best
+        this.vel.limit(this.rAcc);//limited by maximum size of acceleration
+        // console.log(this.vel.x.toFixed(1) + ' ' + this.vel.y.toFixed(1));
+
+
+        let storeVel = p5.Vector.mult(this.vel, Attractor.elapsed);
+
+        this.pos.add(storeVel);
+        this.acc.mult(0);  //  we reset to 0,0
+
+        this.count++;
+        this.count = this.count % this.counterShift;
+    };
+
+    //  --------------------------------------------------------
+    displayIt  () {
+        ellipseMode(CENTER);
+        strokeWeight(0);
+        stroke(0);
+        fill(this.color);
+        if (lstnrs.toggle1) {//this lstnr as class property
+            ellipse(this.pos.x, this.pos.y, this.mass * Attractor.scalM, this.mass * Attractor.scalM);
+        }
+    }
+    //  --------------------------------------------------------
+    edges  () {
+        //  used for attractor, could also be used for particle
+        //  needs improving - put object at collision point
+        //maybe use radius for limitÍ
+        if ((this.pos.y + this.mass) > g.myHeight) {
+            this.vel.y *= -1;
+            this.pos.y = g.myHeight - this.mass;
+        }
+
+        if ((this.pos.y - this.mass) < 0) {
+            this.vel.y *= -1;
+            this.pos.y = this.mass;
+        }
+
+        if ((this.pos.x + this.mass) > g.myWidth) {
+            this.vel.x *= -1;
+            this.pos.x = g.myWidth - this.mass;
+        }
+
+        if ((this.pos.x - this.mass) < 0) {
+            this.vel.x *= -1;
+            this.pos.x = this.mass;
+        }
+    }
 }
 
 //-------------------------------------
@@ -45,100 +135,10 @@ Attractor.scalM = 1;// scalar for size of eclipse() / only display at the moment
 Attractor.nbAtrctr = 1;//Attractor.numberOfAttractors = 0;
 Attractor.arr = [];
 
-//  -----------------------------------
-//====ATTRACTOR METHODS
-Attractor.prototype.calculateAttraction = function (p) { // attractor and particle objects (type: particle)
-    // generates a force, returns vector force = (x,y);
-
-    // Calculate direction of force
-    p.force = p5.Vector.sub(this.pos, p.pos); //2d vector
-
-    // Distance between objects
-    // get the lenght (magnitude) of the vector
-    let distance = p.force.mag(); //2d vector / see footnote
-
-    // Artificial constraint
-    distance = constrain(distance, 2, 8);//constrain(n,low,high) n=numberToConstrain
-
-    // Normalize vector (distance doesn't matter here, we just want this vector for direction)
-    p.force.normalize();
-
-    // Calculate gravitional force magnitude
-    let strength = (this.mass * p.mass) / (distance * distance);
-    // var strength = (this.grav * this.mass * part.mass) / (distance * distance);
-    // Get force vector --> magnitude * direction
-    p.force.mult(strength);
-    // this.calculatedthis.force = this.force;
-    // p.force = force;
-}
-
-//  --------------------------------------------------------
-Attractor.prototype.update = function () {
-
-    // this counter decides when to do a shift in direction
-    if (this.count >= this.counterShift - 1) {
-        this.acc = createVector(random(-this.rAcc, this.rAcc), random(-this.rAcc, this.rAcc));
-        this.counterShift = random(15, 240);//defines how many counts until next shift
-    }
-
-    this.vel.add(this.acc); // add acceleration to velocity
-
-    //constrains a value between a minimum and a maximum value/ I guess limit and constrain have the same use here
-    // this.vel.x = constrain(this.vel.x, -this.rAcc, this.rAcc);// constrain so that is does not go crazy fast
-    // this.vel.y = constrain(this.vel.y, -this.rAcc, this.rAcc);
-
-    //this seems to work best
-    this.vel.limit(this.rAcc);//limited by maximum size of acceleration
-    // console.log(this.vel.x.toFixed(1) + ' ' + this.vel.y.toFixed(1));
 
 
-    let storeVel = p5.Vector.mult(this.vel, Attractor.elapsed);
 
-    this.pos.add(storeVel);
-    this.acc.mult(0);  //  we reset to 0,0
-
-    this.count++;
-    this.count = this.count % this.counterShift;
-};
-
-//  --------------------------------------------------------
-Attractor.prototype.displayIt = function () {
-    ellipseMode(CENTER);
-    strokeWeight(0);
-    stroke(0);
-    fill(this.color);
-    if (lstnrs.toggle1) {//this lstnr as class property
-        ellipse(this.pos.x, this.pos.y, this.mass * Attractor.scalM, this.mass * Attractor.scalM);
-    }
-}
-//  --------------------------------------------------------
-Attractor.prototype.edges = function () {
-    //  used for attractor, could also be used for particle
-    //  needs improving - put object at collision point
-    //maybe use radius for limitÍ
-    if ((this.pos.y + this.mass) > g.myHeight) {
-        this.vel.y *= -1;
-        this.pos.y = g.myHeight - this.mass;
-    }
-
-    if ((this.pos.y - this.mass) < 0) {
-        this.vel.y *= -1;
-        this.pos.y = this.mass;
-    }
-
-    if ((this.pos.x + this.mass) > g.myWidth) {
-        this.vel.x *= -1;
-        this.pos.x = g.myWidth - this.mass;
-    }
-
-    if ((this.pos.x - this.mass) < 0) {
-        this.vel.x *= -1;
-        this.pos.x = this.mass;
-    }
-}
-
-
-    /* // Static method
+/* // Static method
     * var v1 = createVector(2, 3, 4);
     * var v2 = createVector(1, 2, 3);
     *
@@ -149,7 +149,7 @@ Attractor.prototype.edges = function () {
 	/// (magnitude) is exactly 1, at which stage all that is left is the
 	/// direction. A normalized vector is usually called a *unit vector*, and
     /// can be used to represent a pure direction (heading).
-    
+
     */
 
 
@@ -163,7 +163,7 @@ if((b.x + b.radius) > w) {
   // the ball hit the right wall
   // change horizontal direction
   b.speedX = -b.speedX;
-  
+
   // put the ball at the collision point
   b.x = w - b.radius;
 
@@ -172,7 +172,7 @@ if((b.x + b.radius) > w) {
   // the ball hit the left wall
   // change horizontal direction
   b.speedX = -b.speedX;
-  
+
   // put the ball at the collision point
   b.x = b.radius;
 }
