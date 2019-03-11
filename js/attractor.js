@@ -36,7 +36,7 @@ class Attractor {
         this.color = color;    //color
     }
 
-    calculateAttraction  (p) { // attractor and particle objects (type: particle)
+    calculateAttraction(p) { // attractor and particle objects (type: particle)
         // generates a force, returns vector force = (x,y);
 
         // Calculate direction of force
@@ -62,7 +62,7 @@ class Attractor {
     }
 
     //  --------------------------------------------------------
-    update  () {
+    update() {
 
         // this counter decides when to do a shift in direction
         if (this.count >= this.counterShift - 1) {
@@ -91,7 +91,7 @@ class Attractor {
     };
 
     //  --------------------------------------------------------
-    displayIt  () {
+    displayIt() {
         ellipseMode(CENTER);
         strokeWeight(0);
         stroke(0);
@@ -101,7 +101,7 @@ class Attractor {
         }
     }
     //  --------------------------------------------------------
-    edges  () {
+    edges() {
         //  used for attractor, could also be used for particle
         //  needs improving - put object at collision point
         //maybe use radius for limitÍ
