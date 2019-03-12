@@ -5,26 +5,22 @@ function calcAttractors(attArray, partArray) {//(array, array)
         attArray[i].edges();
         attArray[i].displayIt();
 
-        calcParticles(i, attArray, partArray);
-    }
-}
+        //====CALCULATE PARTICLES
+        for (let j = 0; j < Particle.nbPtcls; ++j) {
 
-//  -----------------------------------
-function calcParticles(i, attArray, partArray) {//(number, array, array)
-    for (let j = 0; j < Particle.nbPtcls; ++j) {
-
-        //  calculate attractions is a function of attractor class
-        // calculate attraction between particles and attractor
-        // let force = attArray[i].calculateAttraction(partArray[i][j]);
-
-        attArray[i].calculateAttraction(partArray[i][j]);
-
-        //  apply force (attraction) to each particle
-        partArray[i][j].applyForce();
-
-        //  update and display
-        partArray[i][j].update();
-        partArray[i][j].display();
+            //  calculate attractions is a function of attractor class
+            // calculate attraction between particles and attractor
+            // let force = attArray[i].calculateAttraction(partArray[i][j]);
+    
+            attArray[i].calculateAttraction(partArray[i][j]);
+    
+            //  apply force (attraction) to each particle
+            partArray[i][j].applyForce();
+    
+            //  update and display
+            partArray[i][j].update();
+            partArray[i][j].display();
+        }
     }
 }
 
@@ -41,7 +37,7 @@ function createAttractors(attArray, partArray, g) {//(array, array, object)
         attArray[i] = new Attractor(random(g.myWidth), random(g.myHeight), g.attMass
             + random(g.randMass), g.attGravity, 'rgba(75,75,75, 0.4)');
 
-        // Create particles
+        //====CREATE PARTICLES
         for (let j = 0; j < Particle.nbPtcls; ++j) {
             partArray[i][j] = new Particle(random(g.myWidth), random(g.myHeight), color);
         }
