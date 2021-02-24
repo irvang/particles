@@ -1,63 +1,115 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Particles</title>
+    <script src="libraries/p5.js"></script>
+    <script src="libraries/p5.dom.js"></script>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Particles</title>
-	<script src="libraries/p5.js"></script>
-	<script src="libraries/p5.dom.js"></script>
-
-	<!-- NOTE: For remote access to p5JS libraries use the two following sources -->
-	<!-- <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
+    <!-- NOTE: For remote access to p5JS libraries use the two following sources -->
+    <!-- <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.min.js" type="text/javascript"></script> -->
 
-	<!-- global needs to be the first one / declares global object -->
-	<script src="js/global.js" ></script>
-	<script src="js/utilities.js" ></script>
-	<script src="js/colors.js" ></script>
-	<script src="js/attractor.js" ></script>
-	<script src="js/particle.js" ></script>
-	<script src="js/listeners.js" ></script>
-	<script src="js/sketch.js" ></script>
+    <!-- global needs to be the first one / declares global object -->
+    <script src="js/global.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/colors.js"></script>
+    <script src="js/attractor.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/listeners.js"></script>
+    <script src="js/sketch.js"></script>
 
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
 
-</head>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1349359975422188");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1349359975422188&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+  </head>
 
-<body>
-		<div id='canvasDiv'>
-			<!-- Canvas here -->
-		</div>
+  <body>
+    <div id="canvasDiv">
+      <!-- Canvas here -->
+    </div>
 
-		<!-- FLEX OUTER CONTAINER -->
-		<div id='controls' class='flex-outer-c'>
-
-			<!-- CONTROLLERS -->
-			<!-- flex-inner-c flex inner container-->
-			<div class="flex-inner-c">
-				<button id='toggleAtt' type="button" > Show Attractors</button>
-				<button id='recolor' type="button" > Change particle colors</button>
-			</div>
-			<div class="flex-inner-c">
-				<label for='aMass'>Attractor Mass</label>
-				<input id='aMass' type='range' value='1' min='0.5' max='13' step='0.1'>
-			</div>
-			<div class="flex-inner-c">
-				<label for='pMass'>Particle Mass</label>
-				<input id='pMass' type='range' value='0.5' min='0.3' max='3' step='0.1'>
-			</div>
-			<div class="flex-inner-c">
-				<label for='pLimitLo'>Velocity limit: low</label>
-				<input id='pLimitLo' type='range' value='7' min='5' max='30' step='1'>
-			</div>
-			<div class="flex-inner-c">
-				<label for='pLimitHi'>Velocity limit: high</label>
-				<input id='pLimitHi' type='range' value='10' min='5' max='30' step='1'>
-			</div>
-		</div>
-
-</body>
-
-
+    <!-- FLEX OUTER CONTAINER -->
+    <div id="controls" class="flex-outer-c">
+      <!-- CONTROLLERS -->
+      <!-- flex-inner-c flex inner container-->
+      <div class="flex-inner-c">
+        <button id="toggleAtt" type="button">Show Attractors</button>
+        <button id="recolor" type="button">Change particle colors</button>
+      </div>
+      <div class="flex-inner-c">
+        <label for="aMass">Attractor Mass</label>
+        <input
+          id="aMass"
+          type="range"
+          value="1"
+          min="0.5"
+          max="13"
+          step="0.1"
+        />
+      </div>
+      <div class="flex-inner-c">
+        <label for="pMass">Particle Mass</label>
+        <input
+          id="pMass"
+          type="range"
+          value="0.5"
+          min="0.3"
+          max="3"
+          step="0.1"
+        />
+      </div>
+      <div class="flex-inner-c">
+        <label for="pLimitLo">Velocity limit: low</label>
+        <input id="pLimitLo" type="range" value="7" min="5" max="30" step="1" />
+      </div>
+      <div class="flex-inner-c">
+        <label for="pLimitHi">Velocity limit: high</label>
+        <input
+          id="pLimitHi"
+          type="range"
+          value="10"
+          min="5"
+          max="30"
+          step="1"
+        />
+      </div>
+    </div>
+  </body>
 </html>
