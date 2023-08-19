@@ -11,19 +11,23 @@
 "use strict";
 g.canvas = {};
 
-Attractor.nbAtrctr = 3; //var numberOfAttractors = 5;// testing at a=5, p=200
-Particle.nbPtcls = 400; //var particlesPerAttractor = 200;// 400
+Attractor.nbAtrctr = 5; //var numberOfAttractors = 5;// testing at a=5, p=200
+Particle.nbPtcls = 500; //var particlesPerAttractor = 200;// 400
 
 
-g.attMass = 12, g.randMass = 5;//  mass + 10.ranodm // 12, 5 is a good setting to start
+g.attMass = 12;
+g.randMass = 5;//  mass + 10.ranodm // 12, 5 is a good setting to start
 g.attGravity = 1; // was random(0.5, 1)
 
 //  ---------------
-g.word = 0, g.word2 = null;
+g.word = 0;
+g.word2 = null;
 g.initialTime = new Date();
-g.oldTime = new Date(), g.newTime = new Date();// initialize to date to avoid error on first calculation 
+g.oldTime = new Date();
+g.newTime = new Date();// initialize to date to avoid error on first calculation 
 
-g.myHeight = 0, g.myWidth = 0;
+g.myHeight = 0;
+g.myWidth = 0;
 
 //  -----------------------------------
 
@@ -51,14 +55,13 @@ function setup() {
 //  -----------------------------------
 function draw() {
     background(20);
-    
+
     //use it - meanwhile obj.oldTime is the previous one, after use, store it
     g.newTime = new Date();
 
     //time elapsed between frames
     // (1/1000 = 0.001); 0.001 * 60 = 0.06 , a constant; 1000 * 0.06 = 60
     let elapsed = (g.newTime - g.oldTime) * 0.06;
-// console.log(Particle.arr[0][0].force.x);
     Attractor.elapsed = elapsed;
     Particle.elapsed = elapsed;
 

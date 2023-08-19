@@ -17,7 +17,7 @@ class Particle {
         this.pos = createVector(xStart, yStart);
         this.vel = createVector(0.0, 0);
         this.acc = createVector(0.0, 0);
-        this.force = createVector(1, 1);
+        this.force = createVector(1, 1); // does the starting value matter?
 
         //floats
         this.mass = random(3, 5);//3-10
@@ -29,7 +29,7 @@ class Particle {
         this.color = color;// could be static since I am using the same for all
     }
 
-    applyForce  () {
+    applyForce() {
         // we make a copy so that the original force is not affected since we need to reuse it// not really
         // let f = this.force.copy();
         // f.div(this.mass);
@@ -41,7 +41,7 @@ class Particle {
     }
 
     //  -----------------------------------
-    update  () {
+    update() {
 
         this.vel.add(this.acc);
         this.vel.limit(this.limit);
@@ -51,13 +51,13 @@ class Particle {
     }
 
     //  -----------------------------------
-    display  () {
+    display() {
         stroke(0);
         strokeWeight(0);
         // fill(255, 127);
         fill(this.color);
         ellipse(this.pos.x, this.pos.y, this.mass
-                * Particle.scalM, this.mass * Particle.scalM);
+            * Particle.scalM, this.mass * Particle.scalM);
     }
 }
 

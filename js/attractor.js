@@ -145,9 +145,9 @@ Attractor.arr = [];
     * var v3 = p5.Vector.sub(v1, v2);
     v3 has compnents [1, 1, 1]
 
-        	/// *Normalization* means to scale the vector so that its length
-	/// (magnitude) is exactly 1, at which stage all that is left is the
-	/// direction. A normalized vector is usually called a *unit vector*, and
+            /// *Normalization* means to scale the vector so that its length
+    /// (magnitude) is exactly 1, at which stage all that is left is the
+    /// direction. A normalized vector is usually called a *unit vector*, and
     /// can be used to represent a pure direction (heading).
 
     */
